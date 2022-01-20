@@ -1,0 +1,209 @@
+body{
+  padding-left: 90px;
+  padding-right: 90px;
+}
+
+#cate{
+  font-family:cursive;
+  margin-bottom: 40px;
+  letter-spacing: 0px;
+  word-spacing: -5px;
+}
+.dropdown1 {
+  display: none;
+  background-color: #218a84;
+  position: absolute;
+  margin-top: 2x;
+  padding: 15px 6px;
+  border-radius: 15px;
+  z-index: 1000;
+  margin-right: 60px;
+  width: 180px;
+  height: 100px;
+}
+.dropdown1 ul li {
+  list-style: none;
+}
+.dropdown1 ul li a:hover {
+  background-color: #2a706d;
+}
+.dropdown1 ul li a {
+  text-decoration: none;
+  color: white;
+}
+#drop-btn1:hover .dropdown1 {
+  display: block;
+}
+.collapse ul li a {
+  line-height: 3px;
+  color: white;
+}
+.collapse ul li {
+  padding-right: 7px;
+  padding-left: 6px;
+}
+
+.container-fluid {
+  background-color: #218a84;
+  padding: 6px 5px 6px 5px;
+  border-radius: 15px;
+  position: relative;
+}
+.nav-last #first {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.nav-last ul li {
+  list-style: none;
+}
+.nav-last ul li a {
+  color: white;
+  text-decoration: none;
+  margin-right: 30px;
+}
+.nav-last ul li:last-child {
+  margin-right: 90px;
+}
+
+#main-flex {
+  display: flex;
+  margin-top: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  justify-content: flex-start;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background: linear-gradient(50deg, #218a84 55%, rgb(62, 219, 180) 65%);
+}
+.card:hover .overlay {
+  opacity: 1;
+}
+
+.Text {
+  text-align: right;
+  color:white;
+  font-size: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.Text a{
+  color: #cccccc;
+  text-decoration: none;
+  font-size: xx-large;
+}
+.pro_div .card-body {
+  display: flex;
+  justify-content: space-between;
+}
+.iconify :hover {
+  color: green;
+}
+
+footer{
+  margin-top: 90px;
+  height: 300px;
+  text-align: center;
+  background-color: black;
+  color: white;
+  border-radius: 15px;
+  margin-bottom: 5px;
+  position:sticky;
+  
+}
+
+.image{
+  height: 450px; 
+}
+.dashboard_div{
+  margin-top: 50px;
+  display: flex !important;
+  justify-content: space-evenly;
+  flex-direction: row;
+  margin-bottom: 200px;
+}
+.title h5{
+  text-align: center;
+  
+}
+.cart-info{
+  margin-top: 10px;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+
+}
+#quanti {
+  display: flex;
+  flex-direction: row;
+}
+.quantity{
+  max-height: 30px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.pro-image{
+  height: 70px;
+  width: 90px;
+}
+
+.arrow{
+  height:12px;
+  width: 14px;
+
+}
+.shipping_main{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 50px;
+}
+.shipping-form li{
+  list-style: none;
+  margin-left: 3cm;
+
+}
+#info-head{
+  margin-top: 40px;
+}
+.shipping-form ul{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.row{
+  margin-bottom: 10px;
+}
+.d-grid{
+  margin-top: 10px;
+}
+.shipping-form{
+  padding: 30px;
+  box-shadow: whitesmoke 20px 20px 50px 15px;
+}
+#payment{
+  margin-top: 40px !important;
+  padding: 30px;
+  box-shadow: whitesmoke 20px 20px 50px 15px;
+
+}
+.pro-image2{
+  height: 50px;
+  width: 60px;
+}

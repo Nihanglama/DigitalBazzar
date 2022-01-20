@@ -1,0 +1,50 @@
+{% extends 'DigitalBazzar/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="dashboard_div">
+
+<div class="card">
+    <div class="card-body" style="width: 18rem;">
+      <h5 class="title">On Cart</h5>
+      <ul>
+      {% for cart in carts %}
+        <li>{{cart.product.name}} {{cart.date}}</li>
+      {% endfor %}
+      </ul>
+      <a href="#" class="btn btn-primary">View More</a>
+    </div> 
+  </div>
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="title">Delivered Order</h5>
+      <ul>
+        <li>order1</li>
+        <li>order2</li>
+     </ul>
+      <a href="#" class="btn btn-primary">View More</a>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="title">Pending Order</h5>
+      <ul>
+          <li>order1</li>
+          <li>order2</li>
+      </ul>
+      <a href="#" class="btn btn-primary">View more</a>
+    </div>
+  </div>
+
+</div>
+
+
+
+{% endblock content %}
+
+
+
+
+

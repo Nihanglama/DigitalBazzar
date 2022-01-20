@@ -1,0 +1,134 @@
+{% extends 'DigitalBazzar/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="    ">
+
+
+<div class="shipping_main">
+    <div>
+    <div class="shipping-form">
+        <form id="form">
+            <!-- {% csrf_token %} -->
+            <h5 id="info-head">Shipping Info</h5>
+            <div class="row g-3">
+                <div class="col">
+                  <input type="text" required  class="form-control" placeholder="address" name="address">
+                </div>
+                <div class="col">
+                  <input type="text" required class="form-control" placeholder="city" name="city">
+                </div>
+              </div>
+              <div class="row g-3">
+                <div class="col">
+                  <input type="text" required class="form-control" placeholder="state" name="state">
+                </div>
+                <div class="col">
+                    <input type="text" required class="form-control" placeholder="zip-code" name="code">
+                </div>
+              </div>
+              <input type="text" required class="form-control" placeholder="phone" name="phone">
+              
+              
+           
+            <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary" id="form-btn">Continue</button>
+        </div>
+            
+        </form>
+    </div>
+    <div id="payment" >
+     <h5 id="payments" style="display: none;">Paypal Option: <button class="btn btn-outline-dark" id="final-submit">make payment</button></h5>
+     </div>
+</div>
+
+    <div class="shipping-form">
+        <a href="{% url 'mycart' %}" class="btn btn-outline-dark">&#8592; Back to Cart</a>
+        <hr>
+        <h2><strong>Order Summary</strong></h2>
+        <hr>
+       
+        {% for item in items %}
+        <div >                                                                                                                                                                                                                                                                                                                                                              
+        <ul>
+        <img src="{{item.product.picture.url}}" class="pro-image2">
+        <li>{{item.product.name}}</li>
+        <li>${{item.product.price}}</li>
+        <li>x{{item.quantity}}</li>                                                                                                                                                                                                                                                                                                                                         
+        </ul>
+        {% endfor %}
+        </div>                                                                                                                                                                                                                                                                                                                              
+        <hr>
+        <h5>Total items : {{order.total_item}}</h5>
+        <h5 >Total price: $<strong id="total">{{order.get_total}}</strong> </h5>
+   
+        
+    
+    </div>
+
+
+</div>
+</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+
+<script>
+    var form= document.getElementById('form')
+
+    form.addEventListener('submit',function(e){
+        e.preventDefault()
+        document.getElementById('form-btn').style.display='none'
+        document.getElementById('payments').style.display='block'        
+    });
+    document.getElementById('final-submit').addEventListener('click',function(e){
+      Submitform()
+    })
+
+    function Submitform(){
+      console.log('button clicked')
+      var total=document.getElementById('total').innerHTML
+      console.log(total)
+      var formdata={
+        'name':null,
+        'email':null,
+        'address':null,
+        'state':null,
+        'zip':null,
+        'city':null,
+        'phone':null,
+        'total':total,
+    }
+    formdata.name=customer
+    formdata.email=email
+    formdata.address=form.address.value
+    formdata.state=form.state.value
+    formdata.zip=form.code.value
+    formdata.city=form.city.value
+    formdata.phone=form.phone.value
+    console.log(formdata)
+
+    var url=('/processing-orders/')
+    fetch(url,{
+      method:'POST',
+      headers:{
+            'Content-Type':'application/json',
+            'X-CSRFToken':csrftoken,
+        },
+        body:JSON.stringify({'form':formdata})
+    })
+    .then((response)=>{
+      return response.json()
+    })
+    .then((data)=>{
+      alert('data:',data)
+      window.location.href="{% url 'products' %}"
+
+    })
+    }
+
+
+    
+
+  </script>
+
+{% endblock content %}
+

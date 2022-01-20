@@ -1,0 +1,48 @@
+{% extends 'DigitalBazzar/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+	<div class="col-lg-12">
+		<br>
+		<div class="box-element">
+            <a  class="btn btn-outline-dark" href="{% url 'products' %}">&#x2190; Continue Shopping</a>
+            <br>
+            <br>
+            <table class="table">
+                <tr>
+                    <th><h5>Items: <strong>{{order.total_item}}</strong></h5></th>
+                    <th><h5>Total:<strong> ${{order.get_total}}</strong></h5></th>
+                    <th>
+                        <a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'shipping' %}">place_Order</a>
+                    </th>
+                </tr>
+            </table>
+
+            <div class="cart-info" >
+                <div><strong>Picture</strong></div>
+                <div><strong>Item</strong></div>
+                <div><strong>Price</strong></div>
+                <div><strong>Quantity</strong></div>
+                <div><strong>Total</strong></div>
+                
+            </div>
+            {% for item in items %}
+            <div class="cart-info">
+                <div ><img class="pro-image" src="{{item.product.picture.url}}"></div>
+                <div ><p>{{item.product.name}}</p></div>
+                <div><p>{{item.product.price}}</p></div>
+                <div id="quanti">
+                    <p class="quantity">{{item.quantity}}</p>
+                    <div class="quantity">
+                        <button class="addtocart" data-product='{{item.product.id}}' data-action="add" ><img class="arrow" src='{% static "/images/3+arrow-up.png" %}'></button>
+                        <button class="addtocart" data-product='{{item.product.id}}' data-action="remove" ><img class="arrow" src='{% static "/images/2+arrow-down.png" %}'></button>
+                    </div>
+                </div>
+                <div><p>${{item.get_item_sum}}</p></div>
+        </div>
+        {% endfor %}
+
+	</div>
+</div>
+{% endblock content %}

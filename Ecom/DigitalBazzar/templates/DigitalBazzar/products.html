@@ -1,0 +1,33 @@
+{% extends 'DigitalBazzar/main.html' %}
+{% load static %}
+{% block content %}
+<div class="pro_div">
+    <div id="main-flex" class="row">
+        {%for product in products%}
+        <div class="col-lg-3">
+            <div class="card">
+                <img src="{{product.picture.url}}" class="image">
+                    <div class="overlay">
+                        <div class="Text">
+                            <b style="color: black;">Properties:</b> <br>
+                            {{product.description}}
+                        </div>
+                    </div>
+            </div>
+            <div class="card-body">
+                <div id="about">
+                    Price: {{product.price}} $<br>
+                </div>
+                <div id="cart">
+                    <button class="addtocart" data-product="{{product.id}}" data-action="add" style="outline: none; border: none; background-color: white ;"><span class="iconify" data-icon="bi:cart-plus-fill" style="color: rgb(255, 94, 0);" data-width="40" data-height="40"></button>
+                    
+                </div>
+            </div>
+            <br>
+        </div>
+        
+          {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
