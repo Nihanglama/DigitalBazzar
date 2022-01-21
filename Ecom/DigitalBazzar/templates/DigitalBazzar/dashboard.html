@@ -11,28 +11,33 @@
       <ul>
       {% for cart in carts %}
         <li>{{cart.product.name}} {{cart.date}}</li>
+        <a href="#" class="btn btn-primary">View More</a>
+      {% empty %}
+        <li>No item on cart</li>
       {% endfor %}
       </ul>
-      <a href="#" class="btn btn-primary">View More</a>
     </div> 
   </div>
 
   <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="title">Delivered Order</h5>
+      <h5 class="title">Total Orders</h5>
       <ul>
-        <li>order1</li>
-        <li>order2</li>
+        {% for order in all_order %}
+        <li>order number: <button style="border: none; background-color: white;">{{order.id}}</button></li>
+        {% endfor %}
+        
      </ul>
       <a href="#" class="btn btn-primary">View More</a>
     </div>
   </div>
   <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="title">Pending Order</h5>
+      <h5 class="title">Placed Order</h5>
       <ul>
-          <li>order1</li>
-          <li>order2</li>
+        {% for ord in place_orders%}
+        <li>order number:{{ord.id}}</li>
+        {% endfor %}
       </ul>
       <a href="#" class="btn btn-primary">View more</a>
     </div>

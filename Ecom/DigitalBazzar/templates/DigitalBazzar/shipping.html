@@ -38,8 +38,8 @@
             
         </form>
     </div>
-    <div id="payment" >
-     <h5 id="payments" style="display: none;">Paypal Option: <button class="btn btn-outline-dark" id="final-submit">make payment</button></h5>
+    <div id="payment" style="display: none;">
+      <div id="paypal-button-container"></div>
      </div>
 </div>
 
@@ -70,18 +70,56 @@
 
 </div>
 </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+<script src="https://www.paypal.com/sdk/js?client-id=Afdnr0GkdNT8RMkHf8BXNuvsJ24YDDu672jNBTQ51GVOlyOlaHY2HdJj_S4nfqdDVhTt9ZE5O-DbFGxd&currency=USD"></script>
+<script>
+  // Render the PayPal button into #paypal-button-container
+  var total='{{order.get_total}}'
+  paypal.Buttons({
+    style: {
+      color:  'blue',
+      shape:  'pill',
+      height: 40
+  },
+      // Set up the transaction
+      createOrder: function(data, actions) {
+          return actions.order.create({
+              purchase_units: [{
+                  amount: {
+                      value: total
+                  }
+              }]
+          });
+      },
 
+      // Finalize the transaction
+      onApprove: function(data, actions) {
+          return actions.order.capture().then(function(orderData) {
+              // Successful capture! For demo purposes:
+              console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+              var transaction = orderData.purchase_units[0].payments.captures[0];
+              alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+              Submitform()
+
+              // Replace the above to show a success message within this page, e.g.
+              // const element = document.getElementById('paypal-button-container');
+              // element.innerHTML = '';
+              // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+              // Or go to another URL:  actions.redirect('thank_you.html');
+          });
+      }
+
+
+  }).render('#paypal-button-container');
+
+</script>
 <script>
     var form= document.getElementById('form')
 
     form.addEventListener('submit',function(e){
         e.preventDefault()
         document.getElementById('form-btn').style.display='none'
-        document.getElementById('payments').style.display='block'        
+        document.getElementById('payment').style.display='block'        
     });
-    document.getElementById('final-submit').addEventListener('click',function(e){
-      Submitform()
-    })
 
     function Submitform(){
       console.log('button clicked')
@@ -119,7 +157,6 @@
       return response.json()
     })
     .then((data)=>{
-      alert('data:',data)
       window.location.href="{% url 'products' %}"
 
     })

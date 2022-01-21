@@ -1,9 +1,7 @@
-import imp
 import json
-import xml
 from django.http.response import JsonResponse
 from django.shortcuts import render
-from .models import  Customer, Products,Cart,Order
+from .models import  Products,Cart,Order,Shipping
 from django.contrib.auth.decorators import login_required
 import datetime
 
@@ -24,8 +22,10 @@ def  Product_View(request):
 @login_required(login_url="login")
 def Dash_board(request):
     order, created=Order.objects.get_or_create(customer=request.user.customer,status=False)
+    all_order=Order.objects.all()
+    place_order=Order.objects.filter(status=True)
     carts=order.cart_set.all()
-    context_object_name={'carts':carts,'order':order}     
+    context_object_name={'carts':carts,'order':order,'all_order':all_order,'place_orders':place_order}     
     template="DigitalBazzar/dashboard.html"
 
     return render(request,template,context_object_name)
@@ -65,7 +65,7 @@ def update_cart(request):
     return JsonResponse("cart updated",safe=False)
 
 @login_required(login_url="login")
-def Shipping(request):
+def shipping(request):
     order=Order.objects.get(customer=request.user.customer,status=False)
     items= order.cart_set.all()
     context_object_name={'items':items,'order':order}
@@ -81,36 +81,37 @@ def Processing(request):
 
     order, created=Order.objects.get_or_create(customer=request.user.customer,status=False)
     order.transaction_id=transaction_id
+    print(order)
 
-    name=form['form']['name']
+    # name=form['form']['name']
     email=form['form']['email']
     address=form['form']['address']
     state=form['form']['state']
-    zip=form['form']['name']
-    city=form['form']['email']
-    phone=form['form']['name']
+    zips=form['form']['zip']
+    city=form['form']['city']
+    phone=form['form']['phone']
     total=form['form']['total']
-    print(total)
-    print(order.get_total)
 
-    if(total==order.get_total):
-        order.status==True
+ 
+    if(int(total)==order.get_total):
+        order.status=True
         order.save()
-
+    else:
+        print("not equal")
+    print(order.status)
     if order.status==True:
-
         Shipping.objects.create(
-
-        customer=name,
+        customer=request.user.customer,
         order=order,
         address=address,
-        code=zip,
+        code=zips,
         phone=phone,
         email=email,
         city=city,
         state=state
         )
-        Shipping.save()
+        print("shipping  created")
+
         return JsonResponse('successed',safe=False)
    
     else:
