@@ -1,10 +1,8 @@
-from curses.ascii import SI
-import imp
-from tempfile import template
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from DigitalBazzar.forms import Signup
+from DigitalBazzar.models import Customer
 
 
 
@@ -17,7 +15,7 @@ class Login(LoginView):
 
     def get(self,*args, **kwargs):
         if self.request.user.is_authenticated:
-            print(self.request.user.is_authenticated)
+            self.cus=self.request.user.customer.name
             return redirect('products')
         return super(Login,self).get( *args, **kwargs)
         
@@ -25,7 +23,6 @@ class Login(LoginView):
 def register(request):
     if request.user.is_authenticated:
         return redirect('products')
-
     form=Signup
     template_name="user_handler/register.html"
     if request.method=="POST":

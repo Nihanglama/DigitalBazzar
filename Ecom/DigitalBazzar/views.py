@@ -1,9 +1,13 @@
+import imp
 import json
 from django.http.response import JsonResponse
 from django.shortcuts import render
+from DigitalBazzar.forms import Update_profile
 from .models import  Products,Cart,Order,Shipping
 from django.contrib.auth.decorators import login_required
 import datetime
+from django.contrib.messages import success
+
 
 
 def  Product_View(request):
@@ -12,18 +16,37 @@ def  Product_View(request):
     if request.user.is_authenticated:
         order,created=Order.objects.get_or_create(customer=request.user.customer,status=False)
         context_object_name={'products':products,'order':order}
+        if request.method=="GET":
+            search=request.GET.get('search')
+            if search!=None:
+                context_object_name['products']=Products.objects.filter(name__icontains=search)
+                context_object_name['search']=search
         return render(request,template,context_object_name)
-    
     context_object_name={'products':products}
+    if request.method=="GET":
+        search=request.GET.get('search')
+        context_object_name['products']=Products.objects.filter(name__icontains=search)
+        context_object_name['search']=search
 
     return render(request,template,context_object_name)
+@login_required(login_url='login')
+def profile(request):
+    template_name="DigitalBazzar/profile.html"
+    form=Update_profile(instance=request.user.customer)
+    if request.method=='POST':
+        form=Update_profile(request.POST,request.FILES,instance=request.user.customer)
+        if form.is_valid():
+            form.save()
+            success(request,'profile updated successfully..')
+    context_object_name={'form':form}
+    return render(request,template_name,context_object_name)
 
 
 @login_required(login_url="login")
 def Dash_board(request):
     order, created=Order.objects.get_or_create(customer=request.user.customer,status=False)
-    all_order=Order.objects.all()
-    place_order=Order.objects.filter(status=True)
+    all_order=Order.objects.filter(customer=request.user.customer)
+    place_order=Order.objects.filter(status=True,customer=request.user.customer)
     carts=order.cart_set.all()
     context_object_name={'carts':carts,'order':order,'all_order':all_order,'place_orders':place_order}     
     template="DigitalBazzar/dashboard.html"

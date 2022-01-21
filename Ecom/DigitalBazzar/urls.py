@@ -1,5 +1,4 @@
 from django.urls import path
-# from .views import Processing,Dash_board
 from DigitalBazzar import views
 
 urlpatterns = [
@@ -9,4 +8,5 @@ urlpatterns = [
     path('updatecart/',views.update_cart,name='updatecart'),
     path('shipping/',views.shipping,name='shipping'),
     path('processing-orders/',views.Processing,name='processing'),
+    path('profiles/',views.profile,name='profile'),
 ]

@@ -69,37 +69,12 @@ body{
 #main-flex {
   display: flex;
   margin-top: 50px;
-  margin-left: 10px;
-  margin-right: 10px;
+  flex-direction: row;
   justify-content: flex-start;
 }
-.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: 0.5s ease;
-  background: linear-gradient(50deg, #218a84 55%, rgb(62, 219, 180) 65%);
-}
-.card:hover .overlay {
-  opacity: 1;
-}
-
-.Text {
-  text-align: right;
-  color:white;
-  font-size: 15px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
+.image{
+  height: 300px;
+  width: 400px; 
 }
 .Text a{
   color: #cccccc;
@@ -113,6 +88,16 @@ body{
 .iconify :hover {
   color: green;
 }
+#view{
+  background-color: rgb(255, 94, 0);
+  border-style: none;
+  border-radius:3px;
+  height: 35px;
+  width: 50px;
+}
+#view:hover{
+  background-color: green;
+}
 
 footer{
   margin-top: 90px;
@@ -124,10 +109,6 @@ footer{
   margin-bottom: 5px;
   position:sticky;
   
-}
-
-.image{
-  height: 450px; 
 }
 .dashboard_div{
   margin-top: 50px;
@@ -206,4 +187,18 @@ footer{
 .pro-image2{
   height: 50px;
   width: 60px;
+}
+#profile_body{
+  margin: 0 auto !important;
+  text-align:center !important;
+  color: black;
+}
+#image{
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
+#main_body{
+  margin: 0 auto;
+  margin-top: 50px;
 }

@@ -32,7 +32,7 @@
             <li id="drop-btn1"><a class="nav" href=""><span class="iconify" data-icon="ic:baseline-account-circle" style="color: black;" data-width="40" data-height="40"></span></a>
               <div class="dropdown1">
                 <ul>
-                  <li><a href="">Profile</a></li>
+                  <li><a href="{% url 'profile' %}">Profile</a></li>
                   {% if request.user.is_authenticated %}
                   <li><a href="{% url 'logout' %}">Logout</a></li>
                   {% else %}

@@ -1,17 +1,8 @@
-import imp
-from statistics import mode
-from django.db.models import fields
-from django.db.models.fields import Field
-from .models import Shipping
-from django.forms import ModelForm, forms
+
+from .models import Customer
+from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-
-class Ship_form(ModelForm):
-    class Meta:
-        model=Shipping
-        fields='__all__'
-        exclude=('customer','order')
 
 class Signup(UserCreationForm):
     class Meta:
@@ -19,4 +10,8 @@ class Signup(UserCreationForm):
         fields=['username','email','password1','password2']
 
 
-
+class Update_profile(ModelForm):
+    class Meta:
+        model=Customer
+        fields='__all__'
+        exclude=['user']

@@ -4,14 +4,105 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>register</title>
+    <title>Login</title>
+    <style>
+        body{
+            align-items: center;
+        }
+        #inner_div{
+
+            background-color:black;
+            margin: 0 auto;
+            color: whitesmoke;
+            height: 900px;
+            width: 800px;
+            padding: 3px 2px 4px;
+            border: whitesmoke solid;
+            border-radius: 26px;
+            text-align: center;
+        
+        }
+        input{
+            text-align: center;
+            border: 1px solid #111572;
+            background-color:black;
+            height: 50px;
+            width: 300px;
+            box-sizing: border-box;
+            border-radius: 26px;
+            color: cornsilk;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 100;
+            font-size: 14px;
+            line-height: 16px;
+            letter-spacing: 0.09em;
+            margin-bottom: 30px;
+        }
+        input:hover{
+            border-color: cornflowerblue;
+        }
+       
+        h2{
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+        #btn{
+            margin-top: 30px;
+            background-color: #951E90;
+        }
+        span{
+            color:rgb(158, 145, 119);
+        }a{
+            text-decoration: none;
+            color: white;
+        }
+        button{
+            height: 54px;
+            width: 154px;
+            border-radius: 19px;
+            background-color:#2D2929;
+            color: white;
+            margin-left: 20px;            
+
+        }
+        button:hover{
+            border-color: cyan;
+        }
+     
+     
+
+
+    </style>
 </head>
 <body>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="register">
-    </form>
+    <div id="login_div">
+        <div id="inner_div">
+        <h2>LOGIN</h2>
+        <h3 style="color: cornsilk; font-size: 16;">Login with options below.</h3>
+        <button><b>G</b></button>
+        <button><b>F</b></button>
+        <h4>or</h4>
+        <form method="post">
+            {% csrf_token %}
+            <!-- <h5>Username</h5> -->
+            <input type="text" name="username" placeholder="Enter your username">
+            <!-- <h5>email</h5> -->
+            <input type="text" name="email" placeholder="Enter your email">
+            <!-- <h5>password</h5> -->
+            <input type="password" name="password1" placeholder="Enter your password">
+            <!-- <h5>comfirm</h5> -->
+            <input type="password" name="password2" placeholder="re-enter your password">
+            <br>
+            
+            <input type="submit" value="SIGN UP" id="btn">
+        </form>
+        <br>
+        <span>Already have  an account? <a href="{% url 'login' %}">LOGIN</a></span> 
+    </div>
+
+    </div>
+  
     
 </body>
 </html>

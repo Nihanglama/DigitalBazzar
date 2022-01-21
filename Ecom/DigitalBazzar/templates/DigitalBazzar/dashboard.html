@@ -11,10 +11,11 @@
       <ul>
       {% for cart in carts %}
         <li>{{cart.product.name}} {{cart.date}}</li>
-        <a href="#" class="btn btn-primary">View More</a>
+        
       {% empty %}
         <li>No item on cart</li>
       {% endfor %}
+      <a href="#" class="btn btn-primary">View More</a>
       </ul>
     </div> 
   </div>
@@ -37,9 +38,12 @@
       <ul>
         {% for ord in place_orders%}
         <li>order number:{{ord.id}}</li>
+        {% empty %}
+        <li>None</li>
         {% endfor %}
+        <a href="#" class="btn btn-primary">View more</a>
       </ul>
-      <a href="#" class="btn btn-primary">View more</a>
+      
     </div>
   </div>
 
