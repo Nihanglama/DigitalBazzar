@@ -7,6 +7,7 @@ from .models import  Products,Cart,Order,Shipping
 from django.contrib.auth.decorators import login_required
 import datetime
 from django.contrib.messages import success
+from django.views.generic import DeleteView
 
 
 
@@ -25,10 +26,21 @@ def  Product_View(request):
     context_object_name={'products':products}
     if request.method=="GET":
         search=request.GET.get('search')
-        context_object_name['products']=Products.objects.filter(name__icontains=search)
-        context_object_name['search']=search
+        if search!=None:
+                context_object_name['products']=Products.objects.filter(name__icontains=search)
+                context_object_name['search']=search
 
     return render(request,template,context_object_name)
+
+def Products_Deatail(request,pk):
+    product=Products.objects.get(id=pk)
+    context_object_name={'products':product}
+    template='DigitalBazzar/detail.html'
+
+    return render(request,template,context_object_name)
+    
+
+
 @login_required(login_url='login')
 def profile(request):
     template_name="DigitalBazzar/profile.html"

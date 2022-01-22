@@ -1,0 +1,51 @@
+{% extends 'DigitalBazzar/main.html' %}
+
+{% block content %}
+<style>
+    #detail{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 40px;
+
+  
+}
+img{
+  height: 400px;
+  width: 500px;
+  border-radius: 15px;
+  margin-bottom: 50px;
+
+}
+#inner2{
+    padding: 70px 60px 50px;
+}
+span{
+    color: rgb(27, 21, 21);
+    margin-left: 30px;
+    text-align: center;
+    
+    }
+</style>
+<div id='detail'>
+    <div id="inner1">
+        <a  class="btn btn-outline-dark" href="{% url 'products' %}">&#x2190; Continue Shopping</a>
+        <br><br>
+    <img src="{{products.picture.url}}">
+    <h5>Product: {{products.name}}</h5>
+    <h5>Price: {{products.price}}</h5>
+    </div>
+    <div id='inner2'>
+        <div id="inner3">
+            <h5><b>Description:</b><span>{{products.description}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut labore quo deserunt tenetur recusandae, sed nam officia aliquam natus, corrupti nulla unde harum ipsum iusto impedit voluptate. Et, soluta nam!</span></h5>
+        </div>
+    <h5> <b>Category:</b> <span>{{products.category}}</span> </h5>
+    </div>
+    
+
+</div>
+
+
+
+
+{% endblock content %}

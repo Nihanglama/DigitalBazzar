@@ -45,7 +45,7 @@
        
         h2{
             margin-top: 50px;
-            margin-bottom: 60px;
+            margin-bottom: 150px;
         }
         #btn{
             margin-top: 30px;
@@ -80,19 +80,19 @@
     <div id="login_div">
         <div id="inner_div">
         <h2>LOGIN</h2>
-        <h3 style="color: cornsilk; font-size: 16;">Login with options below.</h3>
-        <button><b>G</b></button>
-        <button><b>F</b></button>
-        <h4>or</h4>
         <form method="post">
             {% csrf_token %}
-            <input type="text" name="username" placeholder="Enter your username">
+            <input type="text" name="username" placeholder="Enter your username" required>
             <br>
-            <input type="password" name="password" placeholder="Enter your password">
+            <input type="password" name="password" placeholder="Enter your password" required>
             <br>
             
             <input type="submit" value="LOGIN" id="btn">
         </form>
+        <br>
+        <span id="q1">Forget Password ?</span>
+        <a href="{% url 'reset_password' %}">Reset</a>
+        <br>
         <br>
         <span>Don't have an account? <a href="{% url 'register' %}">SIGN UP</a></span> 
     </div>
