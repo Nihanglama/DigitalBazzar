@@ -102,12 +102,13 @@ body{
 footer{
   margin-top: 90px;
   height: 300px;
-  text-align: center;
   background-color: black;
   color: white;
   border-radius: 15px;
   margin-bottom: 5px;
+  padding: 40px;
   position:sticky;
+
   
 }
 .dashboard_div{
@@ -201,5 +202,11 @@ footer{
 #main_body{
   margin: 0 auto;
   margin-top: 50px;
+}
+
+#accounts{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
 
